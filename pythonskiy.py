@@ -11,7 +11,7 @@ import pickle
 class Pythonsky(object):
     PARAGRAPH_DELIMITER = "\n\n"
     SPEACH_DELIMITER = "\"'"
-    SENTENCE_END = "?!.'"
+    SENTENCE_END = "?!."
 
     def __init__(self, work_dir):
         self._text = ""
