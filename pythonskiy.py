@@ -11,10 +11,9 @@ import pickle
 class Pythonsky(object):
     PARAGRAPH_DELIMITER = "\n\n"
     SPEACH_DELIMITER = "\"'"
-    SENTENCE_END = "?!.'"
+    SENTENCE_END = "?!."
 
     def __init__(self, work_dir):
-        self._text = ""
 
         tokens = []
         sentences = []
@@ -82,7 +81,7 @@ class Pythonsky(object):
 
     def _wrap_with_space(self, word):
         if word[0] not in string.punctuation:
-            return " " + word
+            return u" " + word
         else:
             return word
 
@@ -104,7 +103,7 @@ class Pythonsky(object):
             word_before_previous = previous_word
             previous_word = sequent_word
 
-        sent = "".join(map(self._wrap_with_space, sent))
+        sent = u"".join(map(self._wrap_with_space, sent))
         if sent[0] in Pythonsky.SPEACH_DELIMITER and sent[-1] not in Pythonsky.SPEACH_DELIMITER:
            sent += sent[0]
 
@@ -122,15 +121,15 @@ class Pythonsky(object):
             sents.append(self._sentence())
             length -= 1
 
-        return " ".join(sents)[1:]
+        return u" ".join(sents)[1:]
 
     def make_text_of_expected_length(self, length=1000):
-        text = ""
+        text = u""
 
         while len(text) < length:
             text += self._paragraph() + Pythonsky.PARAGRAPH_DELIMITER
 
-        return text
+        return text.encode('utf-8')
 
 
 def usage():
